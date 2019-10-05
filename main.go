@@ -19,7 +19,9 @@ func main() {
 
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
-		rollbar.Info("GET /")
+		rollbar.Critical("OUPS!", map[string]interface{}{
+			"hello": "world",
+		})
 		return c.String(http.StatusOK, "Hello, World!")
 	})
 	e.Logger.Fatal(e.Start(":1323"))
